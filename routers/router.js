@@ -17,13 +17,9 @@ router.post("/save", (req,res,next)=>{
  
     const base64Data = req.body.imagen.split(';base64,').pop();
     const fileName = `image_${Date.now()}.png`;
-    const uploadsDir = path.join(__dirname, 'uploads');
 
     // Verificar si la carpeta 'uploads' existe, y si no, crearla
-    if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir);
-    }
-
+  
 // Subir la imagen a Cloudinary
 cloudinary.uploader.upload(`data:image/jpeg;base64,${base64Data}`, {
     folder:"updoads",
